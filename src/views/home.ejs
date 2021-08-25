@@ -1,0 +1,26 @@
+<h1>Welcome to <%= title %></h1>
+<% if(locals.user) { %> 
+<section>
+    <h4>Create A Tweet!</h4>
+    <form action="/tweets/create" method="POST">
+        <textarea name="content" id="" cols="30" rows="10" placeholder="Your tweet.." required></textarea>
+        <input type="submit" value="Create Tweet">
+    </form>
+</section>
+<% } %> 
+<div>
+    <ul>
+        <% for(tweet of tweets) { %>
+            <%- include('./tweets/_tweet') %> 
+        <% } %>  
+    </ul>
+</div>
+
+<section>
+    <h3>Users</h3>
+    <% for(user of users) { %> 
+        <p>
+            <a href="/users/profile/<%= user.id %> "><%= user.name %></a>
+        </p>
+    <% } %> 
+</section>
